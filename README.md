@@ -31,7 +31,7 @@ Firstly, import `redux-recycle`:
 ```js
 // Redux utility functions
 import { combineReducers } from 'redux';
-// Redux Undo store enhancer
+// redux-recycle higher-order reducer
 import recycleState from 'redux-recycle';
 ```
 
