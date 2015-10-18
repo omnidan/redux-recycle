@@ -19,7 +19,7 @@ recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
 ```
 
 
-## Ignoring actions
+## Resetting state
 
 `redux-recycle` is a reducer enhancer (higher-order reducer), it provides the
 `recycleState` function, which takes an existing reducer and an array of
