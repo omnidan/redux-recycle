@@ -13,6 +13,8 @@ npm install --save redux-recycle
 ## API
 
 ```js
+import recycleState from 'redux-recycle';
+recycleState(reducer, [ARRAY_OF_ACTIONS])
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
 ```
 
