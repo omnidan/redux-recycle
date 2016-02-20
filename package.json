@@ -1,6 +1,6 @@
 {
   "name": "redux-recycle",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "higher-order reducer to reset the redux state on certain actions",
   "main": "lib/index.js",
   "scripts": {

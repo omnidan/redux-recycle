@@ -19,7 +19,7 @@ describe('recycleState', () => {
 
   it('custom initial state', () => {
     let recycleableReducer = recycleState(reducer, ['RECYCLE'], 'CUSTOM_INITIAL_STATE')
-    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal('CUSTOM_INITIAL_STATE')
+    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({ state: 'CUSTOM_INITIAL_STATE', type: '@@redux-recycle/INIT' })
   })
 
   it('a non-recycle action', () => {
