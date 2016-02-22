@@ -1,9 +1,9 @@
-let { expect } = require('chai')
-let recycleState = require('../src')
+import { expect } from 'chai'
+import recycleState from '../src'
 
 describe('recycleState', () => {
   let reducer = function (state = 'INITIAL_STATE', action) {
-    if (['KNOWN_ACTION', '@@redux-recycle/INIT'].includes(action.type)) {
+    if (['KNOWN_ACTION', '@@redux-recycle/INIT'].indexOf(action.type) > -1) {
       return {
         state,
         type: action.type
