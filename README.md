@@ -50,7 +50,7 @@ combineReducers({
 
 Now, once you click the increment button, the state will be reset to `0`.
 
-if you need more complex initialization logic you can provide a `reducer function` as the last param it willadd be used to get the inital state.
+If you need more complex initialization logic, you can provide a `reducer function` as the last param. It will be called with the state and action to get the initial state.
 
 ```js
 
