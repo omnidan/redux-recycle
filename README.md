@@ -18,6 +18,7 @@ npm install --save redux-recycle
 import recycleState from 'redux-recycle';
 recycleState(reducer, [ARRAY_OF_ACTIONS])
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
+recycleState(reducer, [ARRAY_OF_ACTIONS], resettingReducer)
 ```
 
 
@@ -29,6 +30,8 @@ actions that will reset the state. Optionally, you can also pass an initial
 state to reset to. (defaults to calling your reducer with
 `@@redux-recycle/INIT` and an `undefined` state, which will have the same effect
 as the initial redux action)
+
+if you provide a `reducer function` as the last param it will be used to get the inital state.
 
 Firstly, import `redux-recycle`:
 
@@ -44,6 +47,11 @@ Then, add `recycleState` to your reducer(s) like this:
 ```js
 combineReducers({
   counter: recycleState(counter, [INCREMENT_COUNTER], 0)
+})
+
+// or
+combineReducers({
+  counter: recycleState(counter, [INCREMENT_COUNTER], (state, action) => 0)
 })
 ```
 
