@@ -56,7 +56,7 @@ if you need more complex initialization logic you can provide a `reducer functio
 
 // here you don't allow resetting counting 10 times
 const resetCounter = (state, action) => {
-	return state > 10 ? state : 0
+  return state > 10 ? state : 0
 }
 
 combineReducers({

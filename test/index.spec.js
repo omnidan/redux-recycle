@@ -28,9 +28,9 @@ describe('recycleState', () => {
   })
 
   it('initial state reducer', () => {
-  	const resetReducer = (state, action) => {
-  		return {oldState: state}
-  	}
+    const resetReducer = (state, action) => {
+      return {oldState: state}
+    }
 
     let recycleableReducer = recycleState(reducer, ['RECYCLE'], resetReducer)
     expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({ state: {oldState: 'A'}, type: '@@redux-recycle/INIT' })

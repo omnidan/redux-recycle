@@ -1,6 +1,6 @@
 // redux-recycle higher order reducer
 export default function recycleState (reducer, actions = [], initialState) {
-	const getInitialState = (typeof initialState === 'function') ? initialState : () => initialState
+  const getInitialState = (typeof initialState === 'function') ? initialState : () => initialState
 
   return (state, action) => {
     if (actions.indexOf(action.type) >= 0) {
