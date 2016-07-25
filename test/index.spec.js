@@ -27,7 +27,7 @@ describe('recycleState', () => {
     expect(recycleableReducer('A', { type: 'KNOWN_ACTION' })).to.deep.equal({ state: 'A', type: 'KNOWN_ACTION' })
   })
 
-  it('initial state factory', () => {
+  it('initial state reducer', () => {
   	const resetReducer = (state, action) => {
   		return {oldState: state}
   	}
