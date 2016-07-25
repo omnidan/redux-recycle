@@ -18,6 +18,7 @@ npm install --save redux-recycle
 import recycleState from 'redux-recycle';
 recycleState(reducer, [ARRAY_OF_ACTIONS])
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
+recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState)
 ```
 
 
@@ -49,6 +50,19 @@ combineReducers({
 
 Now, once you click the increment button, the state will be reset to `0`.
 
+If you need more complex initialization logic, you can provide a `reducer function` as the last param. It will be called with the state and action to get the initial state.
+
+```js
+
+// here you don't allow resetting counting 10 times
+const resetCounter = (state, action) => {
+  return state > 10 ? state : 0
+}
+
+combineReducers({
+  counter: recycleState(counter, [RESET_COUNTERS], resetCounter)
+})
+```
 
 ## What is this magic? How does it work?
 
