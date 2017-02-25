@@ -3,6 +3,9 @@
   "version": "1.2.0",
   "description": "higher-order reducer to reset the redux state on certain actions",
   "main": "lib/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "clean": "./node_modules/.bin/rimraf lib",
     "build": "./node_modules/.bin/babel src --out-dir lib",
