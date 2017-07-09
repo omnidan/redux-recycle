@@ -3,7 +3,7 @@ import recycleState from '../src'
 
 describe('recycleState', () => {
   let reducer = function (state = 'INITIAL_STATE', action) {
-    if (['KNOWN_ACTION', '@@redux-recycle/INIT'].indexOf(action.type) > -1) {
+    if (['KNOWN_ACTION', '@@redux-recycle/INIT', 'SPECIAL_RECYCLE_ACTION_NAME'].indexOf(action.type) > -1) {
       return {
         state,
         type: action.type
@@ -34,5 +34,33 @@ describe('recycleState', () => {
 
     let recycleableReducer = recycleState(reducer, ['RECYCLE'], resetReducer)
     expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({ state: {oldState: 'A'}, type: '@@redux-recycle/INIT' })
+  })
+
+  it('special recycle action name', () => {
+    let recycleableReducer = recycleState(reducer, ['RECYCLE'], 'A', {recycleActionType: 'SPECIAL_RECYCLE_ACTION_NAME'})
+    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({ state: 'A', type: 'SPECIAL_RECYCLE_ACTION_NAME' })
+  })
+
+  it('special recycle action name and initial state reducer', () => {
+    const resetReducer = (state, action) => {
+      return {oldState: state}
+    }
+
+    let recycleableReducer = recycleState(reducer, ['RECYCLE'], resetReducer, {recycleActionType: 'SPECIAL_RECYCLE_ACTION_NAME'})
+    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({ state: {oldState: 'A'}, type: 'SPECIAL_RECYCLE_ACTION_NAME' })
+  })
+
+  it('no recycle action', () => {
+    let recycleableReducer = recycleState(reducer, ['RECYCLE'], 'A', {recycleActionType: false})
+    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal('A')
+  })
+
+  it('no recycle action and initial state reducer', () => {
+    const resetReducer = (state, action) => {
+      return {oldState: state}
+    }
+
+    let recycleableReducer = recycleState(reducer, ['RECYCLE'], resetReducer, {recycleActionType: false})
+    expect(recycleableReducer('A', { type: 'RECYCLE' })).to.deep.equal({oldState: 'A'})
   })
 })
