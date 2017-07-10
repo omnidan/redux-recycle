@@ -1,6 +1,6 @@
 # redux-recycle
 
-[![NPM version (>=1.0)](https://img.shields.io/npm/v/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![NPM Downloads](https://img.shields.io/npm/dm/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![Build Status](https://img.shields.io/travis/omnidan/redux-recycle/master.svg?style=flat-square)](https://travis-ci.org/omnidan/redux-recycle) [![Dependencies](https://img.shields.io/david/omnidan/redux-recycle.svg?style=flat-square)](https://david-dm.org/omnidan/redux-recycle) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/) [![https://paypal.me/DanielBugl/10](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat-square)](https://paypal.me/DanielBugl/10) [![https://gratipay.com/~omnidan/](https://img.shields.io/badge/donate-gratipay/bitcoin-yellow.svg?style=flat-square)](https://gratipay.com/~omnidan/)
+[![NPM version (>=1.0)](https://img.shields.io/npm/v/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![NPM Downloads](https://img.shields.io/npm/dm/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![Build Status](https://img.shields.io/travis/omnidan/redux-recycle/master.svg?style=flat-square)](https://travis-ci.org/omnidan/redux-recycle) [![Dependencies](https://img.shields.io/david/omnidan/redux-recycle.svg?style=flat-square)](https://david-dm.org/omnidan/redux-recycle) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/) [![https://paypal.me/DanielBugl/9](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat-square)](https://paypal.me/DanielBugl/9)
 
 _higher-order reducer to reset the redux state on certain actions_
 
@@ -13,6 +13,11 @@ npm install --save redux-recycle
 
 ## Resetting state
 
+```js
+import recycleState from 'redux-recycle'
+recycleState(reducer, actionArray, initialState, config)
+```
+
 `redux-recycle` is a reducer enhancer (higher-order reducer), it provides the
 `recycleState` function, which takes an existing reducer and an array of
 actions that will reset the state.
@@ -22,34 +27,36 @@ state to reset to.
 
 Optionally, you can also pass a config object.
 
-It currently recieves one config: `recycleActionType` that defaults to `@@redux-recycle/INIT`.
-If recycleActionType is provided, the reducer function will be called with `initialState` and the provided action name.
-Otherwise, the state will be reset without calling the reducer one more time. 
+Currently, there is one config option:
+
+- `recycleActionType` (default: `@@redux-recycle/INIT`) - if recycleActionType is provided, the reducer function will be called with `initialState` and the provided action name. If set to `false`, the state will be reset without calling the reducer one more time.
+
 
 ## API
 
 ```js
-import recycleState from 'redux-recycle';
+import recycleState from 'redux-recycle'
 
-//Recycle the state on the following list of actions
+// recycle the state on the following list of actions
 recycleState(reducer, [ARRAY_OF_ACTIONS])
 
-//Also provide the state to reset to
+// also provide an initial state to reset to
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
 
-//Also provide the state to reset to, based on the state and action passed
+// also provide an initial state to reset to, based on the state and action passed
 recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState)
 
-//Also provides the name of the action that will be called on the reducer when recycling it
+// also provide the name of the action that will be called on the reducer when recycling it
 recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState, {
-  recycleActionType: '@@redux-recycle/MY_OWN_ACTION_NAME'
+  recycleActionType: 'MY_OWN_ACTION_NAME'
 })
 
-//Recycles the state to initialState without calling the reducer with any action
+// recycles the state to initialState without calling the reducer with any action
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
   recycleActionType: false
 })
 ```
+
 
 ## Instructions
 
@@ -85,6 +92,7 @@ combineReducers({
   counter: recycleState(counter, [RESET_COUNTERS], resetCounter)
 })
 ```
+
 
 ## What is this magic? How does it work?
 
