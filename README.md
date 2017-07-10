@@ -11,25 +11,47 @@ _higher-order reducer to reset the redux state on certain actions_
 npm install --save redux-recycle
 ```
 
+## Resetting state
+
+`redux-recycle` is a reducer enhancer (higher-order reducer), it provides the
+`recycleState` function, which takes an existing reducer and an array of
+actions that will reset the state.
+
+Optionally, you can also pass an initial
+state to reset to.
+
+Optionally, you can also pass a config object.
+
+It currently recieves one config: `recycleActionType` that defaults to `@@redux-recycle/INIT`.
+If recycleActionType is provided, the reducer function will be called with `initialState` and the provided action name.
+Otherwise, the state will be reset without calling the reducer one more time. 
 
 ## API
 
 ```js
 import recycleState from 'redux-recycle';
+
+//Recycle the state on the following list of actions
 recycleState(reducer, [ARRAY_OF_ACTIONS])
+
+//Also provide the state to reset to
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState)
+
+//Also provide the state to reset to, based on the state and action passed
 recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState)
+
+//Also provides the name of the action that will be called on the reducer when recycling it
+recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState, {
+  recycleActionType: '@@redux-recycle/MY_OWN_ACTION_NAME'
+})
+
+//Recycles the state to initialState without calling the reducer with any action
+recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
+  recycleActionType: false
+})
 ```
 
-
-## Resetting state
-
-`redux-recycle` is a reducer enhancer (higher-order reducer), it provides the
-`recycleState` function, which takes an existing reducer and an array of
-actions that will reset the state. Optionally, you can also pass an initial
-state to reset to. (defaults to calling your reducer with
-`@@redux-recycle/INIT` and an `undefined` state, which will have the same effect
-as the initial redux action)
+## Instructions
 
 Firstly, import `redux-recycle`:
 
