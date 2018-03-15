@@ -56,6 +56,11 @@ recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState, {
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
   recycleActionType: false
 })
+
+// changes initialState to reducer output when 'LOAD' action is dispatched
+recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
+  setInitialStateActionTypes: ['LOAD']
+})
 ```
 
 
