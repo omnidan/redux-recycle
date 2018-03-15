@@ -27,9 +27,10 @@ state to reset to.
 
 Optionally, you can also pass a config object.
 
-Currently, there is one config option:
+Currently, there are two config options:
 
 - `recycleActionType` (default: `@@redux-recycle/INIT`) - if recycleActionType is provided, the reducer function will be called with `initialState` and the provided action name. If set to `false`, the state will be reset without calling the reducer one more time.
+- `setInitialStateActionTypes` (optional) - an array of actions to set `initialState` to as the result of `reducer`.
 
 
 ## API
