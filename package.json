@@ -10,15 +10,22 @@
     "clean": "./node_modules/.bin/rimraf lib",
     "build": "./node_modules/.bin/babel src --out-dir lib",
     "lint": "./node_modules/.bin/eslint src test",
+    "size": "size-limit",
     "test": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
     "test:watch": "cross-env NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive --watch",
     "test:cov": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha -- --recursive",
-    "prepublish": "npm run lint && npm run test && npm run clean && npm run build"
+    "prepublish": "npm run lint && npm run test && npm run size && npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/omnidan/redux-recycle.git"
   },
+  "size-limit": [
+    {
+      "path": "src/index.js",
+      "limit": "126 B"
+    }
+  ],
   "keywords": [
     "redux",
     "flux",
@@ -34,6 +41,7 @@
   },
   "homepage": "https://github.com/omnidan/redux-recycle",
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^2.2.4",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
     "babel-eslint": "^5.0.0",
