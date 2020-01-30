@@ -27,9 +27,10 @@ state to reset to.
 
 Optionally, you can also pass a config object.
 
-Currently, there is one config option:
+Currently, there are two config options:
 
 - `recycleActionType` (default: `@@redux-recycle/INIT`) - if recycleActionType is provided, the reducer function will be called with `initialState` and the provided action name. If set to `false`, the state will be reset without calling the reducer one more time.
+- `setInitialStateActionTypes` (optional) - an array of actions types. This option is used to update the internal recycle state. When one of these actions are dispatched, the result of the reducer will be stored internally. When state is recycled the internal state will be used as the `initialState` value. For example, if you want to recycle state back to a point in time such as after data has loaded then add the `'LOAD'` action and the internal state will recycle back to the load state when a recycle action is dispatched.
 
 
 ## API
@@ -54,6 +55,11 @@ recycleState(reducer, [ARRAY_OF_ACTIONS], (state, action) => initialState, {
 // recycles the state to initialState without calling the reducer with any action
 recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
   recycleActionType: false
+})
+
+// changes initialState to reducer output when 'LOAD' action is dispatched
+recycleState(reducer, [ARRAY_OF_ACTIONS], initialState, {
+  setInitialStateActionTypes: ['LOAD']
 })
 ```
 
