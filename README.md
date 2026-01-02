@@ -1,5 +1,9 @@
 # redux-recycle
 
+> ⚠️ **Project Status: Not Actively Maintained**
+> 
+> This project is currently not being actively maintained. If you are interested in taking over its development and maintenance, please contact me.
+
 [![NPM version (>=1.0)](https://img.shields.io/npm/v/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![NPM Downloads](https://img.shields.io/npm/dm/redux-recycle.svg?style=flat-square)](https://www.npmjs.com/package/redux-recycle) [![Build Status](https://img.shields.io/travis/omnidan/redux-recycle/master.svg?style=flat-square)](https://travis-ci.org/omnidan/redux-recycle) [![Dependencies](https://img.shields.io/david/omnidan/redux-recycle.svg?style=flat-square)](https://david-dm.org/omnidan/redux-recycle) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/) [![https://paypal.me/DanielBugl/9](https://img.shields.io/badge/donate-paypal-yellow.svg?style=flat-square)](https://paypal.me/DanielBugl/9)
 
 _higher-order reducer to reset the redux state on certain actions_
